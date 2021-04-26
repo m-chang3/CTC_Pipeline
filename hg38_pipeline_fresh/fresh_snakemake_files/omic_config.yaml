@@ -1,0 +1,91 @@
+##############################################################################
+# Genome and project-specific files that will change from project-to-project
+##############################################################################
+
+# GTF file for the genome build you would like to use
+gtf_file:
+  ../../pipeline_files/Homo_sapiens.GRCh38.103.chr.gtf
+# Bed file for rseqc function read_distribution
+bed_file:
+  ../../pipeline_files/Homo_sapiens.GRCh38.103.chr.bed
+# Pre-built hisat indexes for hg38
+hisat2_index:
+  ../../pipeline_files/hisat2/hisat_index/hg38/hg38index
+filter_anno:
+  ../../pipeline_files/hg38.Ens_103.biomaRt.geneAnno.Rdata
+barcode_file:
+  ../../pipeline_files/hg38.Ens_103.biomaRt.geneAnno.Rdata
+ 
+####################################################################
+# Tool-specific files that will not change from project-to-project
+####################################################################
+
+# Fasta file including the illumina adapters to be trimmed out via Trimmomatic
+adapter:
+  ../../pipeline_files/TruSeq2-SE.fa
+# Pre-built genome indexes for various organisms which we will screen against to look for contamination
+conf:
+  ../../pipeline_files/fastq_screen.conf
+# Paths to various tools which are used in this pipeline
+hisat2_tool:
+  /home/exacloud/lustre1/KulkarniLab/matt/CTC/pipeline_files
+
+##########################################
+# Important project-specific paths/files
+##########################################
+
+# Metadata needed for differential expression analysis
+#omic_meta_data:
+#  /path/to/metadata.txt
+
+#############################################################################################
+# Project-specific specifications you will need to make prior to submission of the pipeline
+#############################################################################################
+
+# Biotypes you would like to include in your gene counts table
+# Example: protein_coding,lincRNA,sRNA,rRNA,snRNA,snoRNA
+biotypes:
+  protein_coding
+# Unique project identifier which will be concatenated onto your counts table file name.
+project_id:
+  aCTC_hg38
+# Genome assembly used for GO analysis, format must be as below, with the genome assembly first, and the version of ensembl second, separated by a period.
+assembly:
+  hg38
+# remove mito genes (1/0)
+mito:
+  0
+
+#########################
+# Seurat-specific options
+#########################
+# Minimum library size (coverage)
+coverage_threshold:
+  1e5
+# Minimum number of expressed genes
+features_threshold:
+  0   
+# Maximum fraction of reads accounting for the top 50 features
+top50_threshold:
+  0.75
+# Maximum fraction of reads mapping to mithocondrial genes
+MT_threshold:
+  0.25
+# nFeature lower quantile threshold
+Feature_lowerQuantile:
+  0.00
+# nFeature upper quantile threshold
+Feature_upperQuantile:
+  1.00
+# percentMT upper quantile threshold
+percentMT_upperQuantile:
+  1.00
+# Deciding whether or not to integrate across samples
+integrateTF:
+  FALSE
+# nCount upper quantile threshold
+Count_upperQuantile:
+  1.00
+clusterRes:
+  0.2
+
